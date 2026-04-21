@@ -242,7 +242,7 @@
       padding: 4px;
       background: none;
       border: none;
-      z-index: 901;
+      z-index: 903;
     }
     .nav-hamburger span {
       display: block;
@@ -261,13 +261,36 @@
       inset: 0;
       background: rgba(13,17,23,0.97);
       backdrop-filter: blur(20px);
-      z-index: 899;
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 901;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+    }
+    .nav-mobile.open { display: flex; }
+    /* Lang bar — top of mobile menu */
+    .mobile-lang-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 80px 24px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .mobile-lang-bar .lang-switcher {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.14);
+    }
+    .mobile-lang-bar .lang-btn { font-size: 14px; padding: 9px 22px; }
+    /* Nav links — centered in remaining space */
+    .mobile-nav-links {
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 40px;
+      flex: 1;
+      gap: 36px;
+      padding: 40px 24px 60px;
     }
-    .nav-mobile.open { display: flex; }
     .nav-mobile a {
       font-family: var(--font-serif);
       font-size: 2rem;
@@ -276,7 +299,6 @@
       transition: color var(--transition);
     }
     .nav-mobile a:hover { color: var(--gold-primary); }
-    .nav-mobile .lang-switcher { margin-top: 16px; }
 
     /* ── HERO ───────────────────────────────────────────────────────── */
     #hero {
@@ -623,16 +645,20 @@
 
   <!-- Mobile Menu -->
   <nav id="mobile-menu" class="nav-mobile" aria-label="Mobile navigation" aria-hidden="true">
-    <a href="#tours"        class="mobile-link" data-i18n="nav.tours">Tours</a>
-    <a href="#about"        class="mobile-link" data-i18n="nav.about">About</a>
-    <a href="#gallery"      class="mobile-link" data-i18n="nav.gallery">Gallery</a>
-    <a href="#testimonials" class="mobile-link" data-i18n="nav.guides">Guides</a>
-    <a href="#footer"       class="mobile-link" data-i18n="nav.contact">Contact</a>
-    <a href="#cta" class="btn btn-gold" data-i18n="nav.book">Book Now</a>
-    <div class="lang-switcher" role="group" aria-label="Select language">
-      <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
-      <button class="lang-btn"        data-lang="fr" aria-pressed="false">FR</button>
-      <button class="lang-btn"        data-lang="es" aria-pressed="false">ES</button>
+    <div class="mobile-lang-bar">
+      <div class="lang-switcher" role="group" aria-label="Select language">
+        <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+        <button class="lang-btn"        data-lang="fr" aria-pressed="false">FR</button>
+        <button class="lang-btn"        data-lang="es" aria-pressed="false">ES</button>
+      </div>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="#tours"        class="mobile-link" data-i18n="nav.tours">Tours</a>
+      <a href="#about"        class="mobile-link" data-i18n="nav.about">About</a>
+      <a href="#gallery"      class="mobile-link" data-i18n="nav.gallery">Gallery</a>
+      <a href="#testimonials" class="mobile-link" data-i18n="nav.guides">Guides</a>
+      <a href="#footer"       class="mobile-link" data-i18n="nav.contact">Contact</a>
+      <a href="#cta" class="btn btn-gold" data-i18n="nav.book">Book Now</a>
     </div>
   </nav>
 
