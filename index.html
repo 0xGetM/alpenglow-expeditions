@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    /* ─── CSS Custom Properties ─────────────────────────────────────── */
     :root {
       --bg-primary:     #0d1117;
       --bg-secondary:   #0f1923;
@@ -32,14 +31,8 @@
       --font-sans:      'Inter', system-ui, sans-serif;
     }
 
-    /* ─── Reset & Base ───────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
+    html { scroll-behavior: smooth; font-size: 16px; }
     body {
       background-color: var(--bg-primary);
       color: var(--text-primary);
@@ -48,12 +41,10 @@
       line-height: 1.65;
       overflow-x: hidden;
     }
-
     img { display: block; max-width: 100%; }
     a  { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
-    /* Grain overlay — pseudo on body */
     body::before {
       content: '';
       position: fixed;
@@ -64,47 +55,31 @@
       opacity: 0.45;
     }
 
-    /* ─── Scroll-Reveal Animation Classes ───────────────────────────── */
     .reveal {
       opacity: 0;
       transform: translateY(32px);
       transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-scale {
       opacity: 0;
       transform: scale(0.94);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    .reveal-scale.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
     .reveal-left {
       opacity: 0;
       transform: translateX(-32px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
-    .reveal-left.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
 
-    /* Stagger delays */
     .delay-1 { transition-delay: 0.1s; }
     .delay-2 { transition-delay: 0.2s; }
     .delay-3 { transition-delay: 0.3s; }
     .delay-4 { transition-delay: 0.4s; }
 
-    /* ─── Shared Layout Utilities ────────────────────────────────────── */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
     .section-label {
       font-family: var(--font-sans);
@@ -116,7 +91,6 @@
       margin-bottom: 16px;
       display: block;
     }
-
     .section-title {
       font-family: var(--font-serif);
       font-size: clamp(2rem, 4vw, 3.25rem);
@@ -125,19 +99,14 @@
       color: var(--text-primary);
       margin-bottom: 16px;
     }
-
     .section-subtitle {
       font-size: 1rem;
       color: var(--text-secondary);
       max-width: 560px;
       line-height: 1.75;
     }
+    .section-head { margin-bottom: 64px; }
 
-    .section-head {
-      margin-bottom: 64px;
-    }
-
-    /* ─── Buttons ────────────────────────────────────────────────────── */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -153,53 +122,22 @@
       border: none;
       transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
     }
-    .btn:focus-visible {
-      outline: 2px solid var(--gold-primary);
-      outline-offset: 3px;
-    }
+    .btn:focus-visible { outline: 2px solid var(--gold-primary); outline-offset: 3px; }
+    .btn-gold { background: linear-gradient(135deg, var(--gold-primary), var(--gold-light)); color: #0d1117; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201,170,113,0.35); }
+    .btn-ghost { background: transparent; color: var(--text-primary); border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(8px); }
+    .btn-ghost:hover { border-color: var(--gold-primary); color: var(--gold-light); transform: translateY(-2px); }
+    .btn-gold-outline { background: transparent; color: var(--gold-primary); border: 1px solid var(--gold-border); }
+    .btn-gold-outline:hover { background: var(--gold-dim); transform: translateY(-2px); }
 
-    .btn-gold {
-      background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
-      color: #0d1117;
-    }
-    .btn-gold:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(201,170,113,0.35);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--text-primary);
-      border: 1px solid rgba(255,255,255,0.3);
-      backdrop-filter: blur(8px);
-    }
-    .btn-ghost:hover {
-      border-color: var(--gold-primary);
-      color: var(--gold-light);
-      transform: translateY(-2px);
-    }
-
-    .btn-gold-outline {
-      background: transparent;
-      color: var(--gold-primary);
-      border: 1px solid var(--gold-border);
-    }
-    .btn-gold-outline:hover {
-      background: var(--gold-dim);
-      transform: translateY(-2px);
-    }
-
-    /* ─── NAVIGATION ─────────────────────────────────────────────────── */
+    /* ── NAVIGATION ─────────────────────────────────────────────────── */
     #nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 900;
       transition: background var(--transition), backdrop-filter var(--transition), box-shadow var(--transition);
       padding: 20px 0;
     }
-
     #nav.scrolled {
       background: rgba(13, 17, 23, 0.82);
       backdrop-filter: blur(20px);
@@ -207,14 +145,12 @@
       box-shadow: 0 1px 0 rgba(255,255,255,0.05);
       padding: 14px 0;
     }
-
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 16px;
     }
-
     .nav-logo {
       display: flex;
       align-items: center;
@@ -229,13 +165,7 @@
     }
     .nav-logo svg { flex-shrink: 0; }
     .nav-logo span { color: var(--gold-primary); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 36px;
-    }
-
+    .nav-links { display: flex; align-items: center; gap: 36px; }
     .nav-links a {
       font-size: 12px;
       font-weight: 500;
@@ -248,10 +178,8 @@
     .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
       background: var(--gold-primary);
       transition: width var(--transition);
     }
@@ -270,10 +198,38 @@
       border-radius: 40px;
       transition: transform var(--transition), box-shadow var(--transition);
     }
-    .nav-cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(201,170,113,0.35);
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,170,113,0.35); }
+
+    /* Language switcher */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: 40px;
+      padding: 3px;
+      flex-shrink: 0;
     }
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 5px 10px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition);
+    }
+    .lang-btn.active {
+      background: var(--gold-dim);
+      color: var(--gold-primary);
+    }
+    .lang-btn:hover:not(.active) { color: var(--text-secondary); }
+    .lang-btn:focus-visible { outline: 2px solid var(--gold-primary); outline-offset: 2px; }
 
     /* Hamburger */
     .nav-hamburger {
@@ -288,8 +244,7 @@
     }
     .nav-hamburger span {
       display: block;
-      width: 24px;
-      height: 1.5px;
+      width: 24px; height: 1.5px;
       background: var(--text-primary);
       transition: transform var(--transition), opacity var(--transition);
     }
@@ -319,8 +274,9 @@
       transition: color var(--transition);
     }
     .nav-mobile a:hover { color: var(--gold-primary); }
+    .nav-mobile .lang-switcher { margin-top: 16px; }
 
-    /* ─── HERO ───────────────────────────────────────────────────────── */
+    /* ── HERO ───────────────────────────────────────────────────────── */
     #hero {
       position: relative;
       height: 100vh;
@@ -330,35 +286,23 @@
       justify-content: center;
       overflow: hidden;
     }
-
-    .hero-video-wrap {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-
+    .hero-video-wrap { position: absolute; inset: 0; z-index: 0; }
     .hero-video-wrap video {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       object-position: center;
     }
-
     .hero-overlay {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: linear-gradient(180deg, rgba(13,17,23,0.30) 0%, rgba(13,17,23,0.70) 100%);
       z-index: 1;
     }
-
     .hero-content {
-      position: relative;
-      z-index: 2;
+      position: relative; z-index: 2;
       text-align: center;
       padding: 0 24px;
       max-width: 840px;
     }
-
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -376,13 +320,7 @@
       background: rgba(201,170,113,0.08);
       animation: fadeDown 1s ease 0.3s both;
     }
-    .hero-badge-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--gold-primary);
-    }
-
+    .hero-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold-primary); }
     .hero-title {
       font-family: var(--font-serif);
       font-size: clamp(3rem, 8vw, 6.5rem);
@@ -393,11 +331,7 @@
       margin-bottom: 24px;
       animation: fadeUp 1s ease 0.5s both;
     }
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-
+    .hero-title em { font-style: italic; color: var(--gold-light); }
     .hero-subtitle {
       font-size: clamp(1rem, 2vw, 1.2rem);
       color: rgba(240,237,232,0.80);
@@ -405,7 +339,6 @@
       font-weight: 300;
       animation: fadeUp 1s ease 0.65s both;
     }
-
     .hero-buttons {
       display: flex;
       align-items: center;
@@ -414,11 +347,9 @@
       flex-wrap: wrap;
       animation: fadeUp 1s ease 0.8s both;
     }
-
     .hero-scroll {
       position: absolute;
-      bottom: 36px;
-      left: 50%;
+      bottom: 36px; left: 50%;
       transform: translateX(-50%);
       z-index: 2;
       display: flex;
@@ -432,8 +363,7 @@
       animation: fadeUp 1s ease 1s both;
     }
     .hero-scroll-arrow {
-      width: 28px;
-      height: 28px;
+      width: 28px; height: 28px;
       border: 1px solid rgba(255,255,255,0.2);
       border-radius: 50%;
       display: flex;
@@ -441,34 +371,18 @@
       justify-content: center;
       animation: bounce 2s ease-in-out infinite;
     }
+    @keyframes fadeUp   { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes bounce   { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(6px); }
-    }
-
-    /* ─── FEATURES STRIP ─────────────────────────────────────────────── */
+    /* ── FEATURES ───────────────────────────────────────────────────── */
     #features {
       background: var(--bg-secondary);
       border-top: 1px solid var(--glass-border);
       border-bottom: 1px solid var(--glass-border);
       padding: 72px 0;
     }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-    }
-
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
     .feature-card {
       padding: 40px 32px;
       background: var(--bg-card);
@@ -481,18 +395,15 @@
     .feature-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
+      top: 0; left: 0; right: 0; height: 1px;
       background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
       opacity: 0;
       transition: opacity var(--transition);
     }
     .feature-card:hover { border-color: var(--gold-border); }
     .feature-card:hover::before { opacity: 1; }
-
     .feature-icon {
-      width: 48px;
-      height: 48px;
+      width: 48px; height: 48px;
       background: var(--gold-dim);
       border-radius: var(--radius-md);
       display: flex;
@@ -501,33 +412,12 @@
       margin-bottom: 20px;
     }
     .feature-icon svg { color: var(--gold-primary); }
+    .feature-title { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 500; color: var(--text-primary); margin-bottom: 8px; }
+    .feature-desc  { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7; }
 
-    .feature-title {
-      font-family: var(--font-serif);
-      font-size: 1.35rem;
-      font-weight: 500;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-    }
-
-    .feature-desc {
-      font-size: 0.875rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    /* ─── TOURS ──────────────────────────────────────────────────────── */
-    #tours {
-      padding: 112px 0;
-      background: var(--bg-primary);
-    }
-
-    .tours-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
+    /* ── TOURS ──────────────────────────────────────────────────────── */
+    #tours { padding: 112px 0; background: var(--bg-primary); }
+    .tours-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .tour-card {
       background: var(--bg-card);
       border: 1px solid var(--glass-border);
@@ -536,169 +426,44 @@
       backdrop-filter: blur(12px);
       transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
     }
-    .tour-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 24px 56px rgba(0,0,0,0.45);
-      border-color: var(--gold-border);
-    }
-
-    .tour-img-wrap {
-      position: relative;
-      height: 260px;
-      overflow: hidden;
-    }
-    .tour-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
-    }
-    .tour-card:hover .tour-img-wrap img {
-      transform: scale(1.08);
-    }
-
+    .tour-card:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(0,0,0,0.45); border-color: var(--gold-border); }
+    .tour-img-wrap { position: relative; height: 260px; overflow: hidden; }
+    .tour-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .tour-card:hover .tour-img-wrap img { transform: scale(1.08); }
     .tour-badge {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      border-radius: 40px;
+      position: absolute; top: 16px; left: 16px;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 40px;
     }
-    .badge-moderate  { background: rgba(16,185,129,0.18); color: #34d399; border: 1px solid rgba(52,211,153,0.3); }
-    .badge-challenging { background: rgba(245,158,11,0.18); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
-    .badge-expert    { background: rgba(239,68,68,0.18);  color: #f87171; border: 1px solid rgba(248,113,113,0.3); }
-
-    .tour-body {
-      padding: 28px;
-    }
-
-    .tour-name {
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      font-weight: 500;
-      color: var(--text-primary);
-      margin-bottom: 16px;
-      line-height: 1.2;
-    }
-
-    .tour-meta {
-      display: flex;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-    .tour-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      color: var(--text-secondary);
-    }
+    .badge-moderate   { background: rgba(16,185,129,0.18); color: #34d399; border: 1px solid rgba(52,211,153,0.3); }
+    .badge-challenging{ background: rgba(245,158,11,0.18); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+    .badge-expert     { background: rgba(239,68,68,0.18);  color: #f87171; border: 1px solid rgba(248,113,113,0.3); }
+    .tour-body { padding: 28px; }
+    .tour-name { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 500; color: var(--text-primary); margin-bottom: 16px; line-height: 1.2; }
+    .tour-meta { display: flex; gap: 20px; margin-bottom: 20px; }
+    .tour-meta-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-secondary); }
     .tour-meta-item svg { color: var(--gold-primary); flex-shrink: 0; }
+    .tour-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--glass-border); }
+    .tour-price { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 600; color: var(--gold-primary); }
+    .tour-price-label { font-size: 11px; color: var(--text-muted); font-family: var(--font-sans); }
+    .tour-link { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; color: var(--gold-primary); display: flex; align-items: center; gap: 6px; transition: gap var(--transition), color var(--transition); }
+    .tour-link:hover { gap: 10px; color: var(--gold-light); }
 
-    .tour-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 20px;
-      border-top: 1px solid var(--glass-border);
-    }
-
-    .tour-price {
-      font-family: var(--font-serif);
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: var(--gold-primary);
-    }
-    .tour-price-label {
-      font-size: 11px;
-      color: var(--text-muted);
-      font-family: var(--font-sans);
-    }
-
-    .tour-link {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      color: var(--gold-primary);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: gap var(--transition), color var(--transition);
-    }
-    .tour-link:hover {
-      gap: 10px;
-      color: var(--gold-light);
-    }
-
-    /* ─── STATS ──────────────────────────────────────────────────────── */
-    #stats {
-      padding: 96px 0;
-      background: var(--bg-secondary);
-      border-top: 1px solid var(--glass-border);
-      border-bottom: 1px solid var(--glass-border);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--glass-border);
-    }
-
-    .stat-item {
-      background: var(--bg-secondary);
-      text-align: center;
-      padding: 48px 24px;
-    }
-
-    .stat-number {
-      font-family: var(--font-serif);
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 300;
-      color: var(--gold-primary);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
+    /* ── STATS ──────────────────────────────────────────────────────── */
+    #stats { padding: 96px 0; background: var(--bg-secondary); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--glass-border); }
+    .stat-item { background: var(--bg-secondary); text-align: center; padding: 48px 24px; }
+    .stat-number { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--gold-primary); line-height: 1; margin-bottom: 8px; }
     .stat-number span { color: var(--gold-light); }
+    .stat-label { font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); }
 
-    .stat-label {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-    }
-
-    /* ─── ABOUT ──────────────────────────────────────────────────────── */
-    #about {
-      padding: 112px 0;
-      background: var(--bg-primary);
-    }
-
-    .about-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .about-img-wrap {
-      position: relative;
-    }
-    .about-img-wrap img {
-      width: 100%;
-      height: 540px;
-      object-fit: cover;
-      border-radius: var(--radius-lg);
-    }
+    /* ── ABOUT ──────────────────────────────────────────────────────── */
+    #about { padding: 112px 0; background: var(--bg-primary); }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-img-wrap { position: relative; }
+    .about-img-wrap img { width: 100%; height: 540px; object-fit: cover; border-radius: var(--radius-lg); }
     .about-img-badge {
-      position: absolute;
-      bottom: -24px;
-      right: -24px;
+      position: absolute; bottom: -24px; right: -24px;
       background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
       color: #0d1117;
       padding: 24px 28px;
@@ -707,119 +472,30 @@
       text-align: center;
       box-shadow: 0 16px 40px rgba(0,0,0,0.4);
     }
-    .about-img-badge-num {
-      font-size: 2.5rem;
-      font-weight: 600;
-      line-height: 1;
-      display: block;
-    }
-    .about-img-badge-text {
-      font-size: 0.8rem;
-      font-family: var(--font-sans);
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      opacity: 0.8;
-    }
-
+    .about-img-badge-num { font-size: 2.5rem; font-weight: 600; line-height: 1; display: block; }
+    .about-img-badge-text { font-size: 0.8rem; font-family: var(--font-sans); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
     .about-content { padding-right: 24px; }
+    .about-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 20px; }
+    .about-list { margin: 32px 0; }
+    .about-list li { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; color: var(--text-secondary); padding: 10px 0; border-bottom: 1px solid var(--glass-border); }
+    .about-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold-primary); flex-shrink: 0; }
 
-    .about-text {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      margin-bottom: 20px;
-    }
-
-    .about-list {
-      margin: 32px 0;
-    }
-    .about-list li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      padding: 10px 0;
-      border-bottom: 1px solid var(--glass-border);
-    }
-    .about-list li::before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--gold-primary);
-      flex-shrink: 0;
-    }
-
-    /* ─── GALLERY ────────────────────────────────────────────────────── */
-    #gallery {
-      padding: 112px 0;
-      background: var(--bg-secondary);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto auto;
-      gap: 12px;
-    }
-
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-    }
+    /* ── GALLERY ────────────────────────────────────────────────────── */
+    #gallery { padding: 112px 0; background: var(--bg-secondary); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto; gap: 12px; }
+    .gallery-item { position: relative; overflow: hidden; border-radius: var(--radius-md); cursor: pointer; }
     .gallery-item:nth-child(1) { grid-row: span 2; }
     .gallery-item:nth-child(4) { grid-row: span 2; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); min-height: 240px; }
+    .gallery-overlay { position: absolute; inset: 0; background: rgba(201,170,113,0); display: flex; align-items: center; justify-content: center; transition: background var(--transition); }
+    .gallery-overlay svg { opacity: 0; transform: scale(0.7); transition: opacity var(--transition), transform var(--transition); color: var(--white); }
+    .gallery-item:hover .gallery-overlay { background: rgba(201,170,113,0.45); }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item:hover .gallery-overlay svg { opacity: 1; transform: scale(1); }
 
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
-      min-height: 240px;
-    }
-
-    .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(201,170,113,0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background var(--transition);
-    }
-    .gallery-overlay svg {
-      opacity: 0;
-      transform: scale(0.7);
-      transition: opacity var(--transition), transform var(--transition);
-      color: var(--white);
-    }
-    .gallery-item:hover .gallery-overlay {
-      background: rgba(201,170,113,0.45);
-    }
-    .gallery-item:hover img {
-      transform: scale(1.06);
-    }
-    .gallery-item:hover .gallery-overlay svg {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* ─── TESTIMONIALS ───────────────────────────────────────────────── */
-    #testimonials {
-      padding: 112px 0;
-      background: var(--bg-primary);
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
+    /* ── TESTIMONIALS ───────────────────────────────────────────────── */
+    #testimonials { padding: 112px 0; background: var(--bg-primary); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .testimonial-card {
       background: var(--bg-card);
       border: 1px solid var(--glass-border);
@@ -829,251 +505,90 @@
       backdrop-filter: blur(12px);
       transition: transform var(--transition), box-shadow var(--transition);
     }
-    .testimonial-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
-    }
-
-    .testimonial-stars {
-      display: flex;
-      gap: 4px;
-      margin-bottom: 20px;
-    }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+    .testimonial-stars { display: flex; gap: 4px; margin-bottom: 20px; }
     .testimonial-stars svg { color: var(--gold-primary); }
+    .testimonial-quote { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400; font-style: italic; color: var(--text-primary); line-height: 1.65; margin-bottom: 28px; }
+    .testimonial-quote::before { content: '\201C'; color: var(--gold-primary); font-size: 2rem; line-height: 0; vertical-align: -0.4em; margin-right: 4px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--gold-dim); display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 1.1rem; color: var(--gold-primary); font-weight: 600; flex-shrink: 0; border: 1px solid var(--gold-border); }
+    .testimonial-name { font-weight: 600; font-size: 0.9rem; color: var(--text-primary); margin-bottom: 2px; }
+    .testimonial-tour { font-size: 0.78rem; color: var(--gold-primary); letter-spacing: 0.05em; }
 
-    .testimonial-quote {
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      font-weight: 400;
-      font-style: italic;
-      color: var(--text-primary);
-      line-height: 1.65;
-      margin-bottom: 28px;
-    }
-    .testimonial-quote::before {
-      content: '\201C';
-      color: var(--gold-primary);
-      font-size: 2rem;
-      line-height: 0;
-      vertical-align: -0.4em;
-      margin-right: 4px;
-    }
-
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .testimonial-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--gold-dim);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-serif);
-      font-size: 1.1rem;
-      color: var(--gold-primary);
-      font-weight: 600;
-      flex-shrink: 0;
-      border: 1px solid var(--gold-border);
-    }
-    .testimonial-name {
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--text-primary);
-      margin-bottom: 2px;
-    }
-    .testimonial-tour {
-      font-size: 0.78rem;
-      color: var(--gold-primary);
-      letter-spacing: 0.05em;
-    }
-
-    /* ─── CTA SECTION ────────────────────────────────────────────────── */
-    #cta {
-      position: relative;
-      padding: 128px 0;
-      overflow: hidden;
-    }
+    /* ── CTA ────────────────────────────────────────────────────────── */
+    #cta { position: relative; padding: 128px 0; overflow: hidden; }
     .cta-bg {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
       z-index: 0;
     }
-    .cta-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(13,17,23,0.88) 0%, rgba(15,25,35,0.75) 100%);
-    }
-    .cta-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      max-width: 640px;
-      margin: 0 auto;
-    }
-    .cta-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 300;
-      line-height: 1.15;
-      color: var(--white);
-      margin-bottom: 20px;
-    }
+    .cta-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(13,17,23,0.88) 0%, rgba(15,25,35,0.75) 100%); }
+    .cta-content { position: relative; z-index: 1; text-align: center; max-width: 640px; margin: 0 auto; }
+    .cta-title { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 300; line-height: 1.15; color: var(--white); margin-bottom: 20px; }
     .cta-title em { font-style: italic; color: var(--gold-light); }
-    .cta-subtitle {
-      font-size: 1rem;
-      color: rgba(240,237,232,0.7);
-      margin-bottom: 48px;
-      line-height: 1.7;
-    }
+    .cta-subtitle { font-size: 1rem; color: rgba(240,237,232,0.7); margin-bottom: 48px; line-height: 1.7; }
 
-    /* ─── FOOTER ─────────────────────────────────────────────────────── */
-    #footer {
-      background: #080c11;
-      border-top: 1px solid var(--glass-border);
-      padding: 80px 0 40px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1.5fr;
-      gap: 48px;
-      margin-bottom: 64px;
-    }
-
-    .footer-brand p {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      line-height: 1.75;
-      margin-top: 16px;
-      max-width: 280px;
-    }
-
-    .footer-social {
-      display: flex;
-      gap: 12px;
-      margin-top: 24px;
-    }
-    .footer-social a {
-      width: 36px;
-      height: 36px;
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
-      transition: border-color var(--transition), color var(--transition), background var(--transition);
-    }
-    .footer-social a:hover {
-      border-color: var(--gold-border);
-      color: var(--gold-primary);
-      background: var(--gold-dim);
-    }
-
-    .footer-col-title {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-primary);
-      margin-bottom: 20px;
-    }
-
-    .footer-links li {
-      margin-bottom: 12px;
-    }
-    .footer-links a {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      transition: color var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    /* ── FOOTER ─────────────────────────────────────────────────────── */
+    #footer { background: #080c11; border-top: 1px solid var(--glass-border); padding: 80px 0 40px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 48px; margin-bottom: 64px; }
+    .footer-brand p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.75; margin-top: 16px; max-width: 280px; }
+    .footer-social { display: flex; gap: 12px; margin-top: 24px; }
+    .footer-social a { width: 36px; height: 36px; border: 1px solid var(--glass-border); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: border-color var(--transition), color var(--transition), background var(--transition); }
+    .footer-social a:hover { border-color: var(--gold-border); color: var(--gold-primary); background: var(--gold-dim); }
+    .footer-col-title { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-primary); margin-bottom: 20px; }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links a { font-size: 0.875rem; color: var(--text-muted); transition: color var(--transition); display: flex; align-items: center; gap: 8px; }
     .footer-links a:hover { color: var(--gold-primary); }
-
-    .footer-contact p {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
+    .footer-contact p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; }
     .footer-contact svg { color: var(--gold-primary); flex-shrink: 0; margin-top: 2px; }
-
-    .footer-bottom {
-      padding-top: 32px;
-      border-top: 1px solid var(--glass-border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .footer-bottom p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-    .footer-bottom a {
-      color: var(--gold-primary);
-      transition: color var(--transition);
-    }
+    .footer-bottom { padding-top: 32px; border-top: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 0.8rem; color: var(--text-muted); }
+    .footer-bottom a { color: var(--gold-primary); transition: color var(--transition); }
     .footer-bottom a:hover { color: var(--gold-light); }
 
-    /* ─── RESPONSIVE ─────────────────────────────────────────────────── */
+    /* ── RESPONSIVE ─────────────────────────────────────────────────── */
     @media (max-width: 1024px) {
-      .features-grid { grid-template-columns: repeat(2, 1fr); }
-      .tours-grid { grid-template-columns: repeat(2, 1fr); }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .about-inner { grid-template-columns: 1fr; gap: 48px; }
-      .about-content { padding-right: 0; }
-      .about-img-badge { bottom: 16px; right: 16px; }
-      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .features-grid      { grid-template-columns: repeat(2, 1fr); }
+      .tours-grid         { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid         { grid-template-columns: repeat(2, 1fr); }
+      .about-inner        { grid-template-columns: 1fr; gap: 48px; }
+      .about-content      { padding-right: 0; }
+      .about-img-badge    { bottom: 16px; right: 16px; }
+      .testimonials-grid  { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid        { grid-template-columns: 1fr 1fr; }
     }
-
     @media (max-width: 768px) {
-      .nav-links, .nav-cta { display: none; }
+      .nav-links, .nav-cta, .lang-switcher { display: none; }
       .nav-hamburger { display: flex; }
-      .tours-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .tours-grid         { grid-template-columns: 1fr; }
+      .stats-grid         { grid-template-columns: 1fr 1fr; }
+      .gallery-grid       { grid-template-columns: repeat(2, 1fr); }
       .gallery-item:nth-child(1) { grid-row: span 1; }
       .gallery-item:nth-child(4) { grid-row: span 1; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
-      .footer-bottom { flex-direction: column; text-align: center; }
+      .testimonials-grid  { grid-template-columns: 1fr; }
+      .footer-grid        { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom      { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .features-grid  { grid-template-columns: 1fr; }
+      .stats-grid     { grid-template-columns: 1fr; }
+      .gallery-grid   { grid-template-columns: 1fr; }
+      .hero-buttons   { flex-direction: column; }
     }
 
-    @media (max-width: 480px) {
-      .features-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .hero-buttons { flex-direction: column; }
-    }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
   </style>
 </head>
 <body>
 
-  <!-- ─── NAVIGATION ─────────────────────────────────────────────────── -->
+  <!-- ── NAVIGATION ──────────────────────────────────────────────────── -->
   <header id="nav" role="banner">
     <div class="container">
       <nav class="nav-inner" aria-label="Main navigation">
         <a href="#hero" class="nav-logo" aria-label="Alpenglow Expeditions — Home">
-          <!-- Mountain SVG icon -->
           <svg width="28" height="20" viewBox="0 0 28 20" fill="none" aria-hidden="true" focusable="false">
             <path d="M14 2L26 18H2L14 2Z" stroke="#c9aa71" stroke-width="1.5" fill="none"/>
             <path d="M8 18L14 8L20 18" stroke="#e6c98a" stroke-width="1" fill="none" opacity="0.6"/>
@@ -1082,14 +597,20 @@
         </a>
 
         <ul class="nav-links" role="list">
-          <li><a href="#tours">Tours</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#testimonials">Guides</a></li>
-          <li><a href="#footer">Contact</a></li>
+          <li><a href="#tours"        data-i18n="nav.tours">Tours</a></li>
+          <li><a href="#about"        data-i18n="nav.about">About</a></li>
+          <li><a href="#gallery"      data-i18n="nav.gallery">Gallery</a></li>
+          <li><a href="#testimonials" data-i18n="nav.guides">Guides</a></li>
+          <li><a href="#footer"       data-i18n="nav.contact">Contact</a></li>
         </ul>
 
-        <a href="#cta" class="nav-cta">Book Now</a>
+        <div class="lang-switcher" role="group" aria-label="Select language">
+          <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+          <button class="lang-btn"        data-lang="fr" aria-pressed="false">FR</button>
+          <button class="lang-btn"        data-lang="es" aria-pressed="false">ES</button>
+        </div>
+
+        <a href="#cta" class="nav-cta" data-i18n="nav.book">Book Now</a>
 
         <button class="nav-hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
           <span></span><span></span><span></span>
@@ -1100,26 +621,26 @@
 
   <!-- Mobile Menu -->
   <nav id="mobile-menu" class="nav-mobile" aria-label="Mobile navigation" aria-hidden="true">
-    <a href="#tours"        class="mobile-link">Tours</a>
-    <a href="#about"        class="mobile-link">About</a>
-    <a href="#gallery"      class="mobile-link">Gallery</a>
-    <a href="#testimonials" class="mobile-link">Guides</a>
-    <a href="#footer"       class="mobile-link">Contact</a>
-    <a href="#cta" class="btn btn-gold">Book Now</a>
+    <a href="#tours"        class="mobile-link" data-i18n="nav.tours">Tours</a>
+    <a href="#about"        class="mobile-link" data-i18n="nav.about">About</a>
+    <a href="#gallery"      class="mobile-link" data-i18n="nav.gallery">Gallery</a>
+    <a href="#testimonials" class="mobile-link" data-i18n="nav.guides">Guides</a>
+    <a href="#footer"       class="mobile-link" data-i18n="nav.contact">Contact</a>
+    <a href="#cta" class="btn btn-gold" data-i18n="nav.book">Book Now</a>
+    <div class="lang-switcher" role="group" aria-label="Select language">
+      <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+      <button class="lang-btn"        data-lang="fr" aria-pressed="false">FR</button>
+      <button class="lang-btn"        data-lang="es" aria-pressed="false">ES</button>
+    </div>
   </nav>
 
   <main id="main-content">
 
-    <!-- ─── HERO ─────────────────────────────────────────────────────── -->
+    <!-- ── HERO ──────────────────────────────────────────────────────── -->
     <section id="hero" aria-label="Hero">
-
       <div class="hero-video-wrap" aria-hidden="true">
-        <video
-          autoplay loop muted playsinline
-          poster="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=80"
-        >
-          <source src="https://videos.pexels.com/video-files/2169880/2169880-hd_1920_1080_25fps.mp4" type="video/mp4" />
-          <source src="https://videos.pexels.com/video-files/1448735/1448735-hd_1920_1080_30fps.mp4" type="video/mp4" />
+        <video autoplay loop muted playsinline poster="images/hero-mountain-valley.jpg">
+          <source src="images/mountai-expert-trail.mp4" type="video/mp4" />
         </video>
         <div class="hero-overlay"></div>
       </div>
@@ -1127,136 +648,99 @@
       <div class="hero-content">
         <div class="hero-badge" role="text">
           <span class="hero-badge-dot" aria-hidden="true"></span>
-          Certified IFMGA Guides
+          <span data-i18n="hero.badge">Certified IFMGA Guides</span>
         </div>
-
-        <h1 class="hero-title">
-          Where the<br><em>Summit Awaits</em>
-        </h1>
-
-        <p class="hero-subtitle">
-          Expert-guided mountain expeditions across the Alps, Rockies, and Himalayas
-        </p>
-
+        <h1 class="hero-title" data-i18n-html="hero.title">Where the<br><em>Summit Awaits</em></h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">Expert-guided mountain expeditions across the Alps, Rockies, and Himalayas</p>
         <div class="hero-buttons">
-          <a href="#tours" class="btn btn-gold">Explore Our Tours</a>
+          <a href="#tours"   class="btn btn-gold"  data-i18n="hero.cta1">Explore Our Tours</a>
           <a href="#gallery" class="btn btn-ghost">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-            Watch Our Story
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <span data-i18n="hero.cta2">Watch Our Story</span>
           </a>
         </div>
       </div>
 
       <a href="#features" class="hero-scroll" aria-label="Scroll to next section">
-        <span>Scroll</span>
+        <span data-i18n="hero.scroll">Scroll</span>
         <div class="hero-scroll-arrow" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 5v14M5 12l7 7 7-7"/>
-          </svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
         </div>
       </a>
-
     </section>
 
-    <!-- ─── FEATURES STRIP ───────────────────────────────────────────── -->
+    <!-- ── FEATURES STRIP ────────────────────────────────────────────── -->
     <section id="features" aria-labelledby="features-heading">
       <div class="container">
-        <h2 id="features-heading" class="sr-only">Why Alpenglow</h2>
+        <h2 id="features-heading" class="sr-only" data-i18n="feat.label">Why Alpenglow</h2>
         <div class="features-grid">
-
           <article class="feature-card reveal delay-1">
             <div class="feature-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-              </svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </div>
-            <h3 class="feature-title">Certified Guides</h3>
-            <p class="feature-desc">All guides hold IFMGA/AMGA certification with 10+ years of high-altitude experience.</p>
+            <h3 class="feature-title" data-i18n="feat1.title">Certified Guides</h3>
+            <p class="feature-desc"  data-i18n="feat1.desc">All guides hold IFMGA/AMGA certification with 10+ years of high-altitude experience.</p>
           </article>
-
           <article class="feature-card reveal delay-2">
             <div class="feature-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
-            <h3 class="feature-title">Small Groups</h3>
-            <p class="feature-desc">Maximum 8 guests per expedition for an intimate and personalised mountain experience.</p>
+            <h3 class="feature-title" data-i18n="feat2.title">Small Groups</h3>
+            <p class="feature-desc"  data-i18n="feat2.desc">Maximum 8 guests per expedition for an intimate and personalised mountain experience.</p>
           </article>
-
           <article class="feature-card reveal delay-3">
             <div class="feature-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M3 12h18M3 6h18M3 18h18"/>
-                <circle cx="7" cy="6" r="2" fill="currentColor" stroke="none" opacity="0.5"/>
-                <circle cx="17" cy="12" r="2" fill="currentColor" stroke="none" opacity="0.5"/>
-                <circle cx="9" cy="18" r="2" fill="currentColor" stroke="none" opacity="0.5"/>
-              </svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/><circle cx="7" cy="6" r="2" fill="currentColor" stroke="none" opacity="0.5"/><circle cx="17" cy="12" r="2" fill="currentColor" stroke="none" opacity="0.5"/><circle cx="9" cy="18" r="2" fill="currentColor" stroke="none" opacity="0.5"/></svg>
             </div>
-            <h3 class="feature-title">Custom Routes</h3>
-            <p class="feature-desc">Tailor every expedition to your fitness level, goals, and preferred mountain range.</p>
+            <h3 class="feature-title" data-i18n="feat3.title">Custom Routes</h3>
+            <p class="feature-desc"  data-i18n="feat3.desc">Tailor every expedition to your fitness level, goals, and preferred mountain range.</p>
           </article>
-
           <article class="feature-card reveal delay-4">
             <div class="feature-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
-            <h3 class="feature-title">Safety First</h3>
-            <p class="feature-desc">Comprehensive rescue equipment, real-time weather monitoring, and 98% safety record.</p>
+            <h3 class="feature-title" data-i18n="feat4.title">Safety First</h3>
+            <p class="feature-desc"  data-i18n="feat4.desc">Comprehensive rescue equipment, real-time weather monitoring, and 98% safety record.</p>
           </article>
-
         </div>
       </div>
     </section>
 
-    <!-- ─── TOURS ─────────────────────────────────────────────────────── -->
+    <!-- ── TOURS ──────────────────────────────────────────────────────── -->
     <section id="tours" aria-labelledby="tours-heading">
       <div class="container">
         <header class="section-head">
-          <span class="section-label reveal">Signature Expeditions</span>
-          <h2 id="tours-heading" class="section-title reveal delay-1">Our Signature<br>Expeditions</h2>
-          <p class="section-subtitle reveal delay-2">Each tour is carefully crafted to balance challenge and wonder, guided by the finest mountaineers in the world.</p>
+          <span class="section-label reveal"       data-i18n="tours.label">Signature Expeditions</span>
+          <h2 id="tours-heading" class="section-title reveal delay-1" data-i18n-html="tours.title">Our Signature<br>Expeditions</h2>
+          <p class="section-subtitle reveal delay-2" data-i18n="tours.subtitle">Each tour is carefully crafted to balance challenge and wonder, guided by the finest mountaineers in the world.</p>
         </header>
-
         <div class="tours-grid">
 
           <!-- Tour 1 -->
           <article class="tour-card reveal delay-1">
             <div class="tour-img-wrap">
-              <img
-                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
-                alt="Snowy alpine summit with clear skies — Alpine Summit Experience"
-                loading="lazy"
-                width="800" height="520"
-              />
-              <span class="tour-badge badge-moderate">Moderate</span>
+              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Snowy alpine summit with clear skies" loading="lazy" width="800" height="520" />
+              <span class="tour-badge badge-moderate" data-i18n="tour1.badge">Moderate</span>
             </div>
             <div class="tour-body">
-              <h3 class="tour-name">Alpine Summit Experience</h3>
+              <h3 class="tour-name" data-i18n="tour1.name">Alpine Summit Experience</h3>
               <ul class="tour-meta" aria-label="Tour details">
                 <li class="tour-meta-item">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                  <span>7 days</span>
+                  <span data-i18n="tour1.days">7 days</span>
                 </li>
                 <li class="tour-meta-item">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  <span>Groups of 4–8</span>
+                  <span data-i18n="tour1.group">Groups of 4–8</span>
                 </li>
               </ul>
               <div class="tour-footer">
                 <div>
-                  <div class="tour-price-label">From</div>
+                  <div class="tour-price-label" data-i18n="tour.from">From</div>
                   <div class="tour-price">$2,400</div>
                 </div>
                 <a href="#cta" class="tour-link" aria-label="Book the Alpine Summit Experience">
-                  Book This Tour
+                  <span data-i18n="tour.link">Book This Tour</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
               </div>
@@ -1266,33 +750,28 @@
           <!-- Tour 2 -->
           <article class="tour-card reveal delay-2">
             <div class="tour-img-wrap">
-              <img
-                src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80"
-                alt="Climber ascending a steep icy slope in winter — Winter Alpine Ascent"
-                loading="lazy"
-                width="800" height="520"
-              />
-              <span class="tour-badge badge-challenging">Challenging</span>
+              <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80" alt="Climber ascending a steep icy slope in winter" loading="lazy" width="800" height="520" />
+              <span class="tour-badge badge-challenging" data-i18n="tour2.badge">Challenging</span>
             </div>
             <div class="tour-body">
-              <h3 class="tour-name">Winter Alpine Ascent</h3>
+              <h3 class="tour-name" data-i18n="tour2.name">Winter Alpine Ascent</h3>
               <ul class="tour-meta" aria-label="Tour details">
                 <li class="tour-meta-item">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                  <span>5 days</span>
+                  <span data-i18n="tour2.days">5 days</span>
                 </li>
                 <li class="tour-meta-item">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  <span>Groups of 2–6</span>
+                  <span data-i18n="tour2.group">Groups of 2–6</span>
                 </li>
               </ul>
               <div class="tour-footer">
                 <div>
-                  <div class="tour-price-label">From</div>
+                  <div class="tour-price-label" data-i18n="tour.from">From</div>
                   <div class="tour-price">$3,100</div>
                 </div>
                 <a href="#cta" class="tour-link" aria-label="Book the Winter Alpine Ascent">
-                  Book This Tour
+                  <span data-i18n="tour.link">Book This Tour</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
               </div>
@@ -1302,33 +781,28 @@
           <!-- Tour 3 -->
           <article class="tour-card reveal delay-3">
             <div class="tour-img-wrap">
-              <img
-                src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=800&q=80"
-                alt="Vast glacier landscape under dramatic mountain peaks — Glacier Trek Adventure"
-                loading="lazy"
-                width="800" height="520"
-              />
-              <span class="tour-badge badge-expert">Expert</span>
+              <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=800&q=80" alt="Vast glacier landscape under dramatic mountain peaks" loading="lazy" width="800" height="520" />
+              <span class="tour-badge badge-expert" data-i18n="tour3.badge">Expert</span>
             </div>
             <div class="tour-body">
-              <h3 class="tour-name">Glacier Trek Adventure</h3>
+              <h3 class="tour-name" data-i18n="tour3.name">Glacier Trek Adventure</h3>
               <ul class="tour-meta" aria-label="Tour details">
                 <li class="tour-meta-item">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                  <span>10 days</span>
+                  <span data-i18n="tour3.days">10 days</span>
                 </li>
                 <li class="tour-meta-item">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  <span>Groups of 4–8</span>
+                  <span data-i18n="tour3.group">Groups of 4–8</span>
                 </li>
               </ul>
               <div class="tour-footer">
                 <div>
-                  <div class="tour-price-label">From</div>
+                  <div class="tour-price-label" data-i18n="tour.from">From</div>
                   <div class="tour-price">$4,200</div>
                 </div>
                 <a href="#cta" class="tour-link" aria-label="Book the Glacier Trek Adventure">
-                  Book This Tour
+                  <span data-i18n="tour.link">Book This Tour</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
               </div>
@@ -1339,171 +813,106 @@
       </div>
     </section>
 
-    <!-- ─── STATS ─────────────────────────────────────────────────────── -->
+    <!-- ── STATS ──────────────────────────────────────────────────────── -->
     <section id="stats" aria-labelledby="stats-heading">
       <div class="container">
         <h2 id="stats-heading" class="sr-only">Our Track Record</h2>
         <div class="stats-grid">
           <div class="stat-item reveal delay-1">
-            <div class="stat-number" aria-label="500 plus summits reached">
-              <span class="counter" data-target="500">0</span><span>+</span>
-            </div>
-            <div class="stat-label">Summits Reached</div>
+            <div class="stat-number" aria-label="500 plus summits reached"><span class="counter" data-target="500">0</span><span>+</span></div>
+            <div class="stat-label" data-i18n="stat1.label">Summits Reached</div>
           </div>
           <div class="stat-item reveal delay-2">
-            <div class="stat-number" aria-label="1200 plus happy clients">
-              <span class="counter" data-target="1200">0</span><span>+</span>
-            </div>
-            <div class="stat-label">Happy Clients</div>
+            <div class="stat-number" aria-label="1200 plus happy clients"><span class="counter" data-target="1200">0</span><span>+</span></div>
+            <div class="stat-label" data-i18n="stat2.label">Happy Clients</div>
           </div>
           <div class="stat-item reveal delay-3">
-            <div class="stat-number" aria-label="15 years experience">
-              <span class="counter" data-target="15">0</span>
-            </div>
-            <div class="stat-label">Years Experience</div>
+            <div class="stat-number" aria-label="15 years experience"><span class="counter" data-target="15">0</span></div>
+            <div class="stat-label" data-i18n="stat3.label">Years Experience</div>
           </div>
           <div class="stat-item reveal delay-4">
-            <div class="stat-number" aria-label="98 percent safety record">
-              <span class="counter" data-target="98">0</span><span>%</span>
-            </div>
-            <div class="stat-label">Safety Record</div>
+            <div class="stat-number" aria-label="98 percent safety record"><span class="counter" data-target="98">0</span><span>%</span></div>
+            <div class="stat-label" data-i18n="stat4.label">Safety Record</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ─── ABOUT ─────────────────────────────────────────────────────── -->
+    <!-- ── ABOUT ──────────────────────────────────────────────────────── -->
     <section id="about" aria-labelledby="about-heading">
       <div class="container">
         <div class="about-inner">
-
           <div class="about-img-wrap reveal-left">
-            <img
-              src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=1600&q=80"
-              alt="Mountaineers traversing a high-altitude snow ridge at sunrise"
-              loading="lazy"
-              width="800" height="540"
-            />
+            <img src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=1600&q=80" alt="Mountaineers traversing a high-altitude snow ridge at sunrise" loading="lazy" width="800" height="540" />
             <div class="about-img-badge" aria-label="15 years guiding mountains">
               <span class="about-img-badge-num">15</span>
-              <span class="about-img-badge-text">Years Guiding<br>the Mountains</span>
+              <span class="about-img-badge-text" data-i18n-html="about.badge">Years Guiding<br>the Mountains</span>
             </div>
           </div>
-
           <div class="about-content reveal">
-            <span class="section-label">Our Story</span>
-            <h2 id="about-heading" class="section-title">Born from a Passion<br><em>for the Heights</em></h2>
-            <p class="about-text">
-              Founded in 2009 by IFMGA-certified guide Marco Steinhardt, Alpenglow Expeditions grew from a single rope team on the Matterhorn into one of the most trusted mountain guiding companies in the world.
-            </p>
-            <p class="about-text">
-              We believe the mountains offer more than adrenaline — they offer clarity, perspective, and a profound connection to the natural world. Every expedition we lead is designed to honour that.
-            </p>
+            <span class="section-label" data-i18n="about.label">Our Story</span>
+            <h2 id="about-heading" class="section-title" data-i18n-html="about.title">Born from a Passion<br><em>for the Heights</em></h2>
+            <p class="about-text" data-i18n="about.p1">Founded in 2009 by IFMGA-certified guide Marco Steinhardt, Alpenglow Expeditions grew from a single rope team on the Matterhorn into one of the most trusted mountain guiding companies in the world.</p>
+            <p class="about-text" data-i18n="about.p2">We believe the mountains offer more than adrenaline — they offer clarity, perspective, and a profound connection to the natural world. Every expedition we lead is designed to honour that.</p>
             <ul class="about-list" aria-label="Company highlights">
-              <li>IFMGA / UIAGM certified guide team</li>
-              <li>Expeditions on 6 continents, 40+ mountain ranges</li>
-              <li>Partnerships with local mountain rescue organisations</li>
-              <li>Leave No Trace committed — zero environmental compromise</li>
+              <li data-i18n="about.li1">IFMGA / UIAGM certified guide team</li>
+              <li data-i18n="about.li2">Expeditions on 6 continents, 40+ mountain ranges</li>
+              <li data-i18n="about.li3">Partnerships with local mountain rescue organisations</li>
+              <li data-i18n="about.li4">Leave No Trace committed — zero environmental compromise</li>
             </ul>
-            <a href="#cta" class="btn btn-gold-outline">Start Your Journey</a>
+            <a href="#cta" class="btn btn-gold-outline" data-i18n="about.cta">Start Your Journey</a>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ─── GALLERY ───────────────────────────────────────────────────── -->
+    <!-- ── GALLERY ────────────────────────────────────────────────────── -->
     <section id="gallery" aria-labelledby="gallery-heading">
       <div class="container">
         <header class="section-head" style="text-align:center;">
-          <span class="section-label reveal">Photography</span>
-          <h2 id="gallery-heading" class="section-title reveal delay-1">Life at Altitude</h2>
-          <p class="section-subtitle reveal delay-2" style="margin:0 auto;">Moments captured at the edge of the world, where silence speaks louder than words.</p>
+          <span class="section-label reveal"        data-i18n="gallery.label">Photography</span>
+          <h2 id="gallery-heading" class="section-title reveal delay-1" data-i18n="gallery.title">Life at Altitude</h2>
+          <p class="section-subtitle reveal delay-2" style="margin:0 auto;" data-i18n="gallery.subtitle">Moments captured at the edge of the world, where silence speaks louder than words.</p>
         </header>
-
         <div class="gallery-grid" role="list">
-
           <div class="gallery-item reveal delay-1" role="listitem">
-            <img
-              src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800&q=80"
-              alt="Dramatic mountain range with jagged peaks piercing low cloud"
-              loading="lazy"
-            />
-            <div class="gallery-overlay" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-            </div>
+            <img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800&q=80" alt="Dramatic mountain range with jagged peaks piercing low cloud" loading="lazy" />
+            <div class="gallery-overlay" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
           </div>
-
           <div class="gallery-item reveal delay-2" role="listitem">
-            <img
-              src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80"
-              alt="Lone hiker silhouetted against a vast alpine sunset"
-              loading="lazy"
-            />
-            <div class="gallery-overlay" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-            </div>
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80" alt="Lone hiker silhouetted against a vast alpine sunset" loading="lazy" />
+            <div class="gallery-overlay" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
           </div>
-
           <div class="gallery-item reveal delay-3" role="listitem">
-            <img
-              src="https://images.unsplash.com/photo-1544198365-f5d60b6d8190?w=800&q=80"
-              alt="Crystal-clear alpine lake reflecting surrounding snow-capped mountains"
-              loading="lazy"
-            />
-            <div class="gallery-overlay" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-            </div>
+            <img src="https://images.unsplash.com/photo-1544198365-f5d60b6d8190?w=800&q=80" alt="Crystal-clear alpine lake reflecting surrounding snow-capped mountains" loading="lazy" />
+            <div class="gallery-overlay" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
           </div>
-
           <div class="gallery-item reveal delay-2" role="listitem">
-            <img
-              src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800&q=80"
-              alt="Aerial view of a glacier flowing between rocky peaks"
-              loading="lazy"
-            />
-            <div class="gallery-overlay" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-            </div>
+            <img src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800&q=80" alt="Aerial view of a glacier flowing between rocky peaks" loading="lazy" />
+            <div class="gallery-overlay" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
           </div>
-
+          <!-- Fixed: was broken Unsplash ID, now uses local hero image -->
           <div class="gallery-item reveal delay-3" role="listitem">
-            <img
-              src="https://images.unsplash.com/photo-1439853949212-36589f9f8b65?w=800&q=80"
-              alt="Golden hour light on rocky alpine terrain"
-              loading="lazy"
-            />
-            <div class="gallery-overlay" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-            </div>
+            <img src="images/hero-mountain-valley.jpg" alt="Golden hour light on rocky alpine terrain" loading="lazy" />
+            <div class="gallery-overlay" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
           </div>
-
           <div class="gallery-item reveal delay-4" role="listitem">
-            <img
-              src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80"
-              alt="Wide panoramic view of mountain ridgelines at dusk"
-              loading="lazy"
-            />
-            <div class="gallery-overlay" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-            </div>
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Wide panoramic view of mountain ridgelines at dusk" loading="lazy" />
+            <div class="gallery-overlay" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ─── TESTIMONIALS ─────────────────────────────────────────────── -->
+    <!-- ── TESTIMONIALS ───────────────────────────────────────────────── -->
     <section id="testimonials" aria-labelledby="testimonials-heading">
       <div class="container">
         <header class="section-head">
-          <span class="section-label reveal">Client Stories</span>
-          <h2 id="testimonials-heading" class="section-title reveal delay-1">Voices from the Summit</h2>
-          <p class="section-subtitle reveal delay-2">From first-time trekkers to seasoned alpinists — every climber has a story worth telling.</p>
+          <span class="section-label reveal"              data-i18n="test.label">Client Stories</span>
+          <h2 id="testimonials-heading" class="section-title reveal delay-1" data-i18n="test.title">Voices from the Summit</h2>
+          <p class="section-subtitle reveal delay-2"      data-i18n="test.subtitle">From first-time trekkers to seasoned alpinists — every climber has a story worth telling.</p>
         </header>
-
         <div class="testimonials-grid">
-
           <article class="testimonial-card reveal delay-1">
             <div class="testimonial-stars" aria-label="5 stars">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1512,18 +921,15 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </div>
-            <blockquote class="testimonial-quote">
-              Standing on that summit, I understood why people dedicate their lives to the mountains. Alpenglow made a lifelong dream completely achievable.
-            </blockquote>
+            <blockquote class="testimonial-quote" data-i18n="test1.quote">Standing on that summit, I understood why people dedicate their lives to the mountains. Alpenglow made a lifelong dream completely achievable.</blockquote>
             <div class="testimonial-author">
               <div class="testimonial-avatar" aria-hidden="true">S</div>
               <div>
-                <div class="testimonial-name">Sarah Moreau</div>
-                <div class="testimonial-tour">Alpine Summit Experience</div>
+                <div class="testimonial-name" data-i18n="test1.name">Sarah Moreau</div>
+                <div class="testimonial-tour" data-i18n="test1.tour">Alpine Summit Experience</div>
               </div>
             </div>
           </article>
-
           <article class="testimonial-card reveal delay-2">
             <div class="testimonial-stars" aria-label="5 stars">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1532,18 +938,15 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </div>
-            <blockquote class="testimonial-quote">
-              The winter ascent was brutal and beautiful. Our guide read the mountain perfectly and kept us safe throughout. No other company comes close.
-            </blockquote>
+            <blockquote class="testimonial-quote" data-i18n="test2.quote">The winter ascent was brutal and beautiful. Our guide read the mountain perfectly and kept us safe throughout. No other company comes close.</blockquote>
             <div class="testimonial-author">
               <div class="testimonial-avatar" aria-hidden="true">J</div>
               <div>
-                <div class="testimonial-name">James Holbrook</div>
-                <div class="testimonial-tour">Winter Alpine Ascent</div>
+                <div class="testimonial-name" data-i18n="test2.name">James Holbrook</div>
+                <div class="testimonial-tour" data-i18n="test2.tour">Winter Alpine Ascent</div>
               </div>
             </div>
           </article>
-
           <article class="testimonial-card reveal delay-3">
             <div class="testimonial-stars" aria-label="5 stars">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1552,290 +955,348 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </div>
-            <blockquote class="testimonial-quote">
-              Ten days on the glacier taught me more about myself than a decade in the boardroom. The Alpenglow team is extraordinary — professional, warm, uncompromising.
-            </blockquote>
+            <blockquote class="testimonial-quote" data-i18n="test3.quote">Ten days on the glacier taught me more about myself than a decade in the boardroom. The Alpenglow team is extraordinary — professional, warm, uncompromising.</blockquote>
             <div class="testimonial-author">
               <div class="testimonial-avatar" aria-hidden="true">A</div>
               <div>
-                <div class="testimonial-name">Akiko Tanaka</div>
-                <div class="testimonial-tour">Glacier Trek Adventure</div>
+                <div class="testimonial-name" data-i18n="test3.name">Akiko Tanaka</div>
+                <div class="testimonial-tour" data-i18n="test3.tour">Glacier Trek Adventure</div>
               </div>
             </div>
           </article>
-
         </div>
       </div>
     </section>
 
-    <!-- ─── CTA SECTION ───────────────────────────────────────────────── -->
+    <!-- ── CTA ────────────────────────────────────────────────────────── -->
     <section id="cta" aria-labelledby="cta-heading">
       <div class="cta-bg" role="presentation" aria-hidden="true"></div>
       <div class="container">
         <div class="cta-content reveal">
-          <span class="section-label" style="text-align:center; display:block;">The Next Expedition</span>
-          <h2 id="cta-heading" class="cta-title">
-            Ready to Reach<br><em>New Heights?</em>
-          </h2>
-          <p class="cta-subtitle">
-            Whether you're a first-time trekker or a seasoned alpinist, we'll build the perfect expedition around you. Limited spaces available each season.
-          </p>
-          <a href="mailto:expeditions@alpenglowexpeditions.com" class="btn btn-gold">
-            Book Your Expedition
-          </a>
+          <span class="section-label" style="text-align:center;display:block;" data-i18n="cta.label">The Next Expedition</span>
+          <h2 id="cta-heading" class="cta-title" data-i18n-html="cta.title">Ready to Reach<br><em>New Heights?</em></h2>
+          <p class="cta-subtitle" data-i18n="cta.subtitle">Whether you're a first-time trekker or a seasoned alpinist, we'll build the perfect expedition around you. Limited spaces available each season.</p>
+          <a href="mailto:expeditions@alpenglowexpeditions.com" class="btn btn-gold" data-i18n="cta.btn">Book Your Expedition</a>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- ─── FOOTER ─────────────────────────────────────────────────────── -->
+  <!-- ── FOOTER ─────────────────────────────────────────────────────── -->
   <footer id="footer" aria-label="Site footer">
     <div class="container">
       <div class="footer-grid">
-
-        <!-- Brand col -->
         <div class="footer-brand">
           <a href="#hero" class="nav-logo" aria-label="Alpenglow Expeditions — Home" style="margin-bottom:0;">
-            <svg width="28" height="20" viewBox="0 0 28 20" fill="none" aria-hidden="true">
-              <path d="M14 2L26 18H2L14 2Z" stroke="#c9aa71" stroke-width="1.5" fill="none"/>
-              <path d="M8 18L14 8L20 18" stroke="#e6c98a" stroke-width="1" fill="none" opacity="0.6"/>
-            </svg>
+            <svg width="28" height="20" viewBox="0 0 28 20" fill="none" aria-hidden="true"><path d="M14 2L26 18H2L14 2Z" stroke="#c9aa71" stroke-width="1.5" fill="none"/><path d="M8 18L14 8L20 18" stroke="#e6c98a" stroke-width="1" fill="none" opacity="0.6"/></svg>
             ALPEN<span>GLOW</span>
           </a>
-          <p>Expert-guided mountain expeditions. Where the summit is only the beginning.</p>
+          <p data-i18n="footer.brand">Expert-guided mountain expeditions. Where the summit is only the beginning.</p>
           <nav class="footer-social" aria-label="Social media links">
-            <!-- Instagram -->
-            <a href="#" aria-label="Follow us on Instagram">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </a>
-            <!-- Facebook -->
-            <a href="#" aria-label="Follow us on Facebook">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            </a>
-            <!-- YouTube -->
-            <a href="#" aria-label="Watch us on YouTube">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 1.96C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
-            </a>
+            <a href="#" aria-label="Follow us on Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" aria-label="Follow us on Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="#" aria-label="Watch us on YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 1.96C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
           </nav>
         </div>
-
-        <!-- Quick Links -->
         <div>
-          <h3 class="footer-col-title">Quick Links</h3>
+          <h3 class="footer-col-title" data-i18n="footer.links">Quick Links</h3>
           <ul class="footer-links">
-            <li><a href="#tours">Our Tours</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#cta">Contact</a></li>
+            <li><a href="#tours"        data-i18n="footer.link1">Our Tours</a></li>
+            <li><a href="#about"        data-i18n="footer.link2">About Us</a></li>
+            <li><a href="#gallery"      data-i18n="footer.link3">Gallery</a></li>
+            <li><a href="#testimonials" data-i18n="footer.link4">Testimonials</a></li>
+            <li><a href="#cta"          data-i18n="footer.link5">Contact</a></li>
           </ul>
         </div>
-
-        <!-- Tours -->
         <div>
-          <h3 class="footer-col-title">Expeditions</h3>
+          <h3 class="footer-col-title" data-i18n="footer.tours">Expeditions</h3>
           <ul class="footer-links">
-            <li><a href="#tours">Alpine Summit Experience</a></li>
-            <li><a href="#tours">Winter Alpine Ascent</a></li>
-            <li><a href="#tours">Glacier Trek Adventure</a></li>
-            <li><a href="#cta">Custom Expedition</a></li>
+            <li><a href="#tours" data-i18n="footer.exp1">Alpine Summit Experience</a></li>
+            <li><a href="#tours" data-i18n="footer.exp2">Winter Alpine Ascent</a></li>
+            <li><a href="#tours" data-i18n="footer.exp3">Glacier Trek Adventure</a></li>
+            <li><a href="#cta"   data-i18n="footer.exp4">Custom Expedition</a></li>
           </ul>
         </div>
-
-        <!-- Contact -->
         <div class="footer-contact">
-          <h3 class="footer-col-title">Contact</h3>
-          <p>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Chamonix-Mont-Blanc, France
-          </p>
-          <p>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            expeditions@alpenglowexpeditions.com
-          </p>
-          <p>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/></svg>
-            +33 450 531 200
-          </p>
+          <h3 class="footer-col-title" data-i18n="footer.contact">Contact</h3>
+          <p><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Chamonix-Mont-Blanc, France</p>
+          <p><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>expeditions@alpenglowexpeditions.com</p>
+          <p><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/></svg>+33 450 531 200</p>
         </div>
-
       </div>
-
       <div class="footer-bottom">
-        <p>&copy; 2026 Alpenglow Expeditions. All rights reserved.</p>
-        <p>
-          <a href="#">Privacy Policy</a>
-          &nbsp;&middot;&nbsp;
-          <a href="#">Terms of Service</a>
-        </p>
+        <p data-i18n="footer.copyright">© 2026 Alpenglow Expeditions. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a>&nbsp;&middot;&nbsp;<a href="#">Terms of Service</a></p>
       </div>
     </div>
   </footer>
 
-  <!-- Visually hidden helper class -->
-  <style>
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0,0,0,0);
-      white-space: nowrap;
-      border: 0;
-    }
-  </style>
-
-  <!-- ─── JAVASCRIPT ────────────────────────────────────────────────── -->
+  <!-- ── JAVASCRIPT ──────────────────────────────────────────────────── -->
   <script>
-    (function () {
-      'use strict';
+  (function () {
+    'use strict';
 
-      /* ── Nav scroll state ────────────────────────────────────────── */
-      const nav = document.getElementById('nav');
-      let lastScroll = 0;
+    /* ── Translations ─────────────────────────────────────────────── */
+    var LANGS = {
+      en: {
+        'nav.tours':'Tours','nav.about':'About','nav.gallery':'Gallery','nav.guides':'Guides','nav.contact':'Contact','nav.book':'Book Now',
+        'hero.badge':'Certified IFMGA Guides',
+        'hero.title':'Where the<br><em>Summit Awaits</em>',
+        'hero.subtitle':'Expert-guided mountain expeditions across the Alps, Rockies, and Himalayas',
+        'hero.cta1':'Explore Our Tours','hero.cta2':'Watch Our Story','hero.scroll':'Scroll',
+        'feat.label':'Why Alpenglow',
+        'feat1.title':'Certified Guides','feat1.desc':'All guides hold IFMGA/AMGA certification with 10+ years of high-altitude experience.',
+        'feat2.title':'Small Groups','feat2.desc':'Maximum 8 guests per expedition for an intimate and personalised mountain experience.',
+        'feat3.title':'Custom Routes','feat3.desc':'Tailor every expedition to your fitness level, goals, and preferred mountain range.',
+        'feat4.title':'Safety First','feat4.desc':'Comprehensive rescue equipment, real-time weather monitoring, and 98% safety record.',
+        'tours.label':'Signature Expeditions','tours.title':'Our Signature<br>Expeditions',
+        'tours.subtitle':'Each tour is carefully crafted to balance challenge and wonder, guided by the finest mountaineers in the world.',
+        'tour1.badge':'Moderate','tour1.name':'Alpine Summit Experience','tour1.days':'7 days','tour1.group':'Groups of 4–8',
+        'tour2.badge':'Challenging','tour2.name':'Winter Alpine Ascent','tour2.days':'5 days','tour2.group':'Groups of 2–6',
+        'tour3.badge':'Expert','tour3.name':'Glacier Trek Adventure','tour3.days':'10 days','tour3.group':'Groups of 4–8',
+        'tour.from':'From','tour.link':'Book This Tour',
+        'stat1.label':'Summits Reached','stat2.label':'Happy Clients','stat3.label':'Years Experience','stat4.label':'Safety Record',
+        'about.label':'Our Story','about.title':'Born from a Passion<br><em>for the Heights</em>',
+        'about.p1':'Founded in 2009 by IFMGA-certified guide Marco Steinhardt, Alpenglow Expeditions grew from a single rope team on the Matterhorn into one of the most trusted mountain guiding companies in the world.',
+        'about.p2':'We believe the mountains offer more than adrenaline — they offer clarity, perspective, and a profound connection to the natural world. Every expedition we lead is designed to honour that.',
+        'about.li1':'IFMGA / UIAGM certified guide team','about.li2':'Expeditions on 6 continents, 40+ mountain ranges',
+        'about.li3':'Partnerships with local mountain rescue organisations','about.li4':'Leave No Trace committed — zero environmental compromise',
+        'about.cta':'Start Your Journey','about.badge':'Years Guiding<br>the Mountains',
+        'gallery.label':'Photography','gallery.title':'Life at Altitude','gallery.subtitle':'Moments captured at the edge of the world, where silence speaks louder than words.',
+        'test.label':'Client Stories','test.title':'Voices from the Summit','test.subtitle':'From first-time trekkers to seasoned alpinists — every climber has a story worth telling.',
+        'test1.quote':'Standing on that summit, I understood why people dedicate their lives to the mountains. Alpenglow made a lifelong dream completely achievable.',
+        'test1.name':'Sarah Moreau','test1.tour':'Alpine Summit Experience',
+        'test2.quote':'The winter ascent was brutal and beautiful. Our guide read the mountain perfectly and kept us safe throughout. No other company comes close.',
+        'test2.name':'James Holbrook','test2.tour':'Winter Alpine Ascent',
+        'test3.quote':'Ten days on the glacier taught me more about myself than a decade in the boardroom. The Alpenglow team is extraordinary — professional, warm, uncompromising.',
+        'test3.name':'Akiko Tanaka','test3.tour':'Glacier Trek Adventure',
+        'cta.label':'The Next Expedition','cta.title':'Ready to Reach<br><em>New Heights?</em>',
+        'cta.subtitle':'Whether you\'re a first-time trekker or a seasoned alpinist, we\'ll build the perfect expedition around you. Limited spaces available each season.',
+        'cta.btn':'Book Your Expedition',
+        'footer.brand':'Expert-guided mountain expeditions. Where the summit is only the beginning.',
+        'footer.links':'Quick Links','footer.tours':'Expeditions','footer.contact':'Contact',
+        'footer.link1':'Our Tours','footer.link2':'About Us','footer.link3':'Gallery','footer.link4':'Testimonials','footer.link5':'Contact',
+        'footer.exp1':'Alpine Summit Experience','footer.exp2':'Winter Alpine Ascent','footer.exp3':'Glacier Trek Adventure','footer.exp4':'Custom Expedition',
+        'footer.copyright':'© 2026 Alpenglow Expeditions. All rights reserved.'
+      },
+      fr: {
+        'nav.tours':'Circuits','nav.about':'À Propos','nav.gallery':'Galerie','nav.guides':'Guides','nav.contact':'Contact','nav.book':'Réserver',
+        'hero.badge':'Guides Certifiés IFMGA',
+        'hero.title':'Là où le Sommet<br><em>Vous Attend</em>',
+        'hero.subtitle':'Expéditions en montagne guidées par des experts dans les Alpes, les Rocheuses et l\'Himalaya',
+        'hero.cta1':'Découvrir nos Circuits','hero.cta2':'Notre Histoire','hero.scroll':'Défiler',
+        'feat.label':'Pourquoi Alpenglow',
+        'feat1.title':'Guides Certifiés','feat1.desc':'Tous nos guides sont certifiés IFMGA/AMGA avec plus de 10 ans d\'expérience en haute altitude.',
+        'feat2.title':'Petits Groupes','feat2.desc':'8 participants maximum par expédition pour une expérience montagnarde intime et personnalisée.',
+        'feat3.title':'Itinéraires Sur Mesure','feat3.desc':'Adaptez chaque expédition à votre niveau, vos objectifs et votre massif de prédilection.',
+        'feat4.title':'La Sécurité Avant Tout','feat4.desc':'Équipement de secours complet, surveillance météo en temps réel et 98% de bilan de sécurité.',
+        'tours.label':'Expéditions Signature','tours.title':'Nos Expéditions<br>Signature',
+        'tours.subtitle':'Chaque circuit est soigneusement conçu pour allier défi et émerveillement, guidé par les meilleurs alpinistes du monde.',
+        'tour1.badge':'Modéré','tour1.name':'Expérience Sommet Alpin','tour1.days':'7 jours','tour1.group':'Groupes de 4 à 8',
+        'tour2.badge':'Difficile','tour2.name':'Ascension Alpine Hivernale','tour2.days':'5 jours','tour2.group':'Groupes de 2 à 6',
+        'tour3.badge':'Expert','tour3.name':'Aventure Trek Glacier','tour3.days':'10 jours','tour3.group':'Groupes de 4 à 8',
+        'tour.from':'À partir de','tour.link':'Réserver',
+        'stat1.label':'Sommets Atteints','stat2.label':'Clients Satisfaits','stat3.label':'Années d\'Expérience','stat4.label':'Taux de Sécurité',
+        'about.label':'Notre Histoire','about.title':'Né d\'une Passion<br><em>pour les Hauteurs</em>',
+        'about.p1':'Fondée en 2009 par le guide certifié IFMGA Marco Steinhardt, Alpenglow Expeditions est passée d\'une cordée sur le Cervin à l\'une des compagnies de guidage les plus reconnues au monde.',
+        'about.p2':'Nous pensons que les montagnes offrent bien plus que de l\'adrénaline — elles offrent clarté, perspective et un lien profond avec la nature. Chaque expédition est conçue pour honorer cela.',
+        'about.li1':'Équipe de guides certifiés IFMGA / UIAGM','about.li2':'Expéditions sur 6 continents, plus de 40 massifs',
+        'about.li3':'Partenariats avec les organisations locales de secours en montagne','about.li4':'Engagés Leave No Trace — zéro compromis environnemental',
+        'about.cta':'Commencer l\'Aventure','about.badge':'Ans à Guider<br>les Montagnes',
+        'gallery.label':'Photographie','gallery.title':'La Vie en Altitude','gallery.subtitle':'Moments captés au bout du monde, là où le silence parle plus fort que les mots.',
+        'test.label':'Témoignages','test.title':'Voix du Sommet','test.subtitle':'Des premiers randonneurs aux alpinistes confirmés — chaque grimpeur a une histoire à raconter.',
+        'test1.quote':'Debout sur ce sommet, j\'ai compris pourquoi les gens consacrent leur vie à la montagne. Alpenglow a rendu un rêve de toujours totalement réalisable.',
+        'test1.name':'Sarah Moreau','test1.tour':'Expérience Sommet Alpin',
+        'test2.quote':'L\'ascension hivernale était rude et magnifique. Notre guide a parfaitement lu la montagne et nous a gardés en sécurité. Aucune autre compagnie n\'en est proche.',
+        'test2.name':'James Holbrook','test2.tour':'Ascension Alpine Hivernale',
+        'test3.quote':'Dix jours sur le glacier m\'ont appris plus sur moi-même qu\'une décennie en salle de réunion. L\'équipe Alpenglow est extraordinaire — professionnelle, chaleureuse, sans compromis.',
+        'test3.name':'Akiko Tanaka','test3.tour':'Aventure Trek Glacier',
+        'cta.label':'La Prochaine Expédition','cta.title':'Prêt à Atteindre<br><em>de Nouveaux Sommets ?</em>',
+        'cta.subtitle':'Que vous soyez randonneur débutant ou alpiniste chevronné, nous concevrons l\'expédition parfaite pour vous. Places limitées chaque saison.',
+        'cta.btn':'Réserver votre Expédition',
+        'footer.brand':'Expéditions en montagne guidées par des experts. Là où le sommet n\'est que le début.',
+        'footer.links':'Liens Rapides','footer.tours':'Expéditions','footer.contact':'Contact',
+        'footer.link1':'Nos Circuits','footer.link2':'À Propos','footer.link3':'Galerie','footer.link4':'Témoignages','footer.link5':'Contact',
+        'footer.exp1':'Expérience Sommet Alpin','footer.exp2':'Ascension Alpine Hivernale','footer.exp3':'Aventure Trek Glacier','footer.exp4':'Expédition Sur Mesure',
+        'footer.copyright':'© 2026 Alpenglow Expeditions. Tous droits réservés.'
+      },
+      es: {
+        'nav.tours':'Circuitos','nav.about':'Nosotros','nav.gallery':'Galería','nav.guides':'Guías','nav.contact':'Contacto','nav.book':'Reservar',
+        'hero.badge':'Guías Certificados IFMGA',
+        'hero.title':'Donde Te Espera<br><em>la Cumbre</em>',
+        'hero.subtitle':'Expediciones de montaña guiadas por expertos en los Alpes, las Rocosas y el Himalaya',
+        'hero.cta1':'Explorar Circuitos','hero.cta2':'Nuestra Historia','hero.scroll':'Desplazar',
+        'feat.label':'Por qué Alpenglow',
+        'feat1.title':'Guías Certificados','feat1.desc':'Todos nuestros guías poseen certificación IFMGA/AMGA con más de 10 años de experiencia en alta montaña.',
+        'feat2.title':'Grupos Pequeños','feat2.desc':'Máximo 8 personas por expedición para una experiencia de montaña íntima y personalizada.',
+        'feat3.title':'Rutas Personalizadas','feat3.desc':'Adapta cada expedición a tu nivel físico, objetivos y cordillera preferida.',
+        'feat4.title':'Seguridad Ante Todo','feat4.desc':'Equipo de rescate completo, monitoreo meteorológico en tiempo real y un 98% de historial de seguridad.',
+        'tours.label':'Expediciones Exclusivas','tours.title':'Nuestras Expediciones<br>Exclusivas',
+        'tours.subtitle':'Cada circuito está cuidadosamente diseñado para equilibrar el desafío y la maravilla, guiado por los mejores montañeros del mundo.',
+        'tour1.badge':'Moderado','tour1.name':'Experiencia Cumbre Alpina','tour1.days':'7 días','tour1.group':'Grupos de 4 a 8',
+        'tour2.badge':'Desafiante','tour2.name':'Ascenso Alpino Invernal','tour2.days':'5 días','tour2.group':'Grupos de 2 a 6',
+        'tour3.badge':'Experto','tour3.name':'Aventura Trekking Glaciar','tour3.days':'10 días','tour3.group':'Grupos de 4 a 8',
+        'tour.from':'Desde','tour.link':'Reservar',
+        'stat1.label':'Cumbres Alcanzadas','stat2.label':'Clientes Felices','stat3.label':'Años de Experiencia','stat4.label':'Récord de Seguridad',
+        'about.label':'Nuestra Historia','about.title':'Nacido de una Pasión<br><em>por las Alturas</em>',
+        'about.p1':'Fundada en 2009 por el guía certificado IFMGA Marco Steinhardt, Alpenglow Expeditions creció desde una cordada en el Matterhorn hasta convertirse en una de las empresas de guía de montaña más confiables del mundo.',
+        'about.p2':'Creemos que las montañas ofrecen más que adrenalina — ofrecen claridad, perspectiva y una conexión profunda con el mundo natural. Cada expedición está diseñada para honrar eso.',
+        'about.li1':'Equipo de guías certificados IFMGA / UIAGM','about.li2':'Expediciones en 6 continentes, más de 40 cordilleras',
+        'about.li3':'Alianzas con organizaciones locales de rescate en montaña','about.li4':'Comprometidos con Leave No Trace — cero compromiso ambiental',
+        'about.cta':'Comenzar la Aventura','about.badge':'Años Guiando<br>las Montañas',
+        'gallery.label':'Fotografía','gallery.title':'Vida en Altura','gallery.subtitle':'Momentos capturados al borde del mundo, donde el silencio habla más fuerte que las palabras.',
+        'test.label':'Testimonios','test.title':'Voces desde la Cumbre','test.subtitle':'Desde senderistas primerizos hasta alpinistas experimentados — cada escalador tiene una historia que contar.',
+        'test1.quote':'De pie en esa cumbre, entendí por qué la gente dedica su vida a las montañas. Alpenglow hizo posible un sueño de toda la vida.',
+        'test1.name':'Sarah Moreau','test1.tour':'Experiencia Cumbre Alpina',
+        'test2.quote':'El ascenso invernal fue brutal y hermoso. Nuestro guía leyó la montaña perfectamente y nos mantuvo seguros en todo momento. Ninguna otra empresa se acerca.',
+        'test2.name':'James Holbrook','test2.tour':'Ascenso Alpino Invernal',
+        'test3.quote':'Diez días en el glaciar me enseñaron más sobre mí mismo que una década en la sala de juntas. El equipo de Alpenglow es extraordinario — profesional, cálido e inflexible.',
+        'test3.name':'Akiko Tanaka','test3.tour':'Aventura Trekking Glaciar',
+        'cta.label':'La Próxima Expedición','cta.title':'¿Listo para Alcanzar<br><em>Nuevas Alturas?</em>',
+        'cta.subtitle':'Ya seas un senderista primerizo o un alpinista experimentado, crearemos la expedición perfecta para ti. Plazas limitadas cada temporada.',
+        'cta.btn':'Reservar tu Expedición',
+        'footer.brand':'Expediciones de montaña guiadas por expertos. Donde la cumbre es solo el comienzo.',
+        'footer.links':'Enlaces Rápidos','footer.tours':'Expediciones','footer.contact':'Contacto',
+        'footer.link1':'Nuestros Circuitos','footer.link2':'Nosotros','footer.link3':'Galería','footer.link4':'Testimonios','footer.link5':'Contacto',
+        'footer.exp1':'Experiencia Cumbre Alpina','footer.exp2':'Ascenso Alpino Invernal','footer.exp3':'Aventura Trekking Glaciar','footer.exp4':'Expedición Personalizada',
+        'footer.copyright':'© 2026 Alpenglow Expeditions. Todos los derechos reservados.'
+      }
+    };
 
-      function onScroll() {
-        const y = window.scrollY;
-        // Add glass background once scrolled past hero
-        if (y > 60) {
-          nav.classList.add('scrolled');
-        } else {
-          nav.classList.remove('scrolled');
+    var currentLang = 'en';
+
+    function setLanguage(lang) {
+      var t = LANGS[lang];
+      if (!t) return;
+      // Text content
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+      // Inner HTML (for elements with <br>, <em> etc.)
+      document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n-html');
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+      // html lang attribute
+      document.documentElement.lang = lang;
+      // Update all switcher buttons (both nav and mobile)
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        var isActive = btn.getAttribute('data-lang') === lang;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+      localStorage.setItem('lang', lang);
+      currentLang = lang;
+    }
+
+    // Wire up all lang buttons
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        setLanguage(btn.getAttribute('data-lang'));
+      });
+    });
+
+    // Init from stored preference
+    var savedLang = localStorage.getItem('lang') || 'en';
+    if (savedLang !== 'en') setLanguage(savedLang);
+
+    /* ── Nav scroll state ─────────────────────────────────────────── */
+    var nav = document.getElementById('nav');
+    function onScroll() {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ── Hamburger / Mobile menu ──────────────────────────────────── */
+    var hamburger  = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobile-menu');
+
+    function openMenu()  {
+      hamburger.classList.add('open');
+      mobileMenu.classList.add('open');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    mobileMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    /* ── Scroll-reveal ────────────────────────────────────────────── */
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
         }
-        lastScroll = y;
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal, .reveal-scale, .reveal-left').forEach(function(el) {
+      revealObs.observe(el);
+    });
+
+    /* ── Animated counters ────────────────────────────────────────── */
+    var countersTriggered = false;
+    function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+    function animateCounter(el, target, duration) {
+      var start = performance.now();
+      function step(now) {
+        var progress = Math.min((now - start) / duration, 1);
+        el.textContent = Math.round(easeOutQuart(progress) * target).toLocaleString();
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target.toLocaleString();
       }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll(); // run once on load
-
-      /* ── Hamburger / Mobile menu ─────────────────────────────────── */
-      const hamburger   = document.getElementById('hamburger');
-      const mobileMenu  = document.getElementById('mobile-menu');
-      const mobileLinks = mobileMenu.querySelectorAll('a');
-
-      function openMenu() {
-        hamburger.classList.add('open');
-        mobileMenu.classList.add('open');
-        mobileMenu.setAttribute('aria-hidden', 'false');
-        hamburger.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeMenu() {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        mobileMenu.setAttribute('aria-hidden', 'true');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      }
-
-      hamburger.addEventListener('click', function () {
-        if (hamburger.classList.contains('open')) {
-          closeMenu();
-        } else {
-          openMenu();
+      requestAnimationFrame(step);
+    }
+    var statsSection = document.getElementById('stats');
+    var counterObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !countersTriggered) {
+          countersTriggered = true;
+          document.querySelectorAll('.counter').forEach(function(c) {
+            animateCounter(c, parseInt(c.getAttribute('data-target'), 10), 2000);
+          });
+          counterObs.disconnect();
         }
       });
+    }, { threshold: 0.4 });
+    if (statsSection) counterObs.observe(statsSection);
 
-      mobileLinks.forEach(function (link) {
-        link.addEventListener('click', closeMenu);
+    /* ── CTA parallax ─────────────────────────────────────────────── */
+    var ctaBg = document.querySelector('.cta-bg');
+    function onScrollParallax() {
+      if (!ctaBg) return;
+      var rect = ctaBg.parentElement.getBoundingClientRect();
+      var vh   = window.innerHeight;
+      if (rect.bottom < 0 || rect.top > vh) return;
+      ctaBg.style.transform = 'translateY(' + ((((vh - rect.top) / (vh + rect.height)) - 0.5) * 80) + 'px)';
+    }
+    window.addEventListener('scroll', onScrollParallax, { passive: true });
+    onScrollParallax();
+
+    /* ── Smooth scroll ────────────────────────────────────────────── */
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       });
+    });
 
-      /* ── Scroll-reveal via IntersectionObserver ──────────────────── */
-      const revealClasses = ['.reveal', '.reveal-scale', '.reveal-left'];
-      const revealEls = document.querySelectorAll(revealClasses.join(','));
-
-      const revealObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            // Unobserve after triggering — no need to re-run
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px'
-      });
-
-      revealEls.forEach(function (el) {
-        revealObserver.observe(el);
-      });
-
-      /* ── Animated counters ───────────────────────────────────────── */
-      const counters = document.querySelectorAll('.counter');
-      let countersTriggered = false;
-
-      function easeOutQuart(t) {
-        return 1 - Math.pow(1 - t, 4);
-      }
-
-      function animateCounter(el, target, duration) {
-        const start = performance.now();
-        function step(now) {
-          const elapsed  = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          const eased    = easeOutQuart(progress);
-          el.textContent = Math.round(eased * target).toLocaleString();
-          if (progress < 1) {
-            requestAnimationFrame(step);
-          } else {
-            el.textContent = target.toLocaleString();
-          }
-        }
-        requestAnimationFrame(step);
-      }
-
-      const statsSection = document.getElementById('stats');
-      const counterObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting && !countersTriggered) {
-            countersTriggered = true;
-            counters.forEach(function (counter) {
-              const target = parseInt(counter.getAttribute('data-target'), 10);
-              animateCounter(counter, target, 2000);
-            });
-            counterObserver.disconnect();
-          }
-        });
-      }, { threshold: 0.4 });
-
-      if (statsSection) {
-        counterObserver.observe(statsSection);
-      }
-
-      /* ── Parallax on CTA background ─────────────────────────────── */
-      const ctaBg = document.querySelector('.cta-bg');
-
-      function onScrollParallax() {
-        if (!ctaBg) return;
-        const rect   = ctaBg.parentElement.getBoundingClientRect();
-        const vh     = window.innerHeight;
-        // Only compute when section is in view
-        if (rect.bottom < 0 || rect.top > vh) return;
-        const ratio  = (vh - rect.top) / (vh + rect.height);
-        const offset = (ratio - 0.5) * 80; // ±40px range
-        ctaBg.style.transform = 'translateY(' + offset + 'px)';
-      }
-
-      window.addEventListener('scroll', onScrollParallax, { passive: true });
-      onScrollParallax();
-
-      /* ── Smooth scroll for anchor links (belt-and-suspenders) ───── */
-      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-        anchor.addEventListener('click', function (e) {
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
-      });
-
-    })();
+  })();
   </script>
 
 </body>
